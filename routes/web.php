@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AllController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(AllController::class)->group(function(){
+    Route::get('/','index')->name('index');
+    Route::post('/','store')->name('store');
+    Route::post('/messages','messages')->name('messages');
 });
