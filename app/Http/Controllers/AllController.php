@@ -16,11 +16,8 @@ class AllController extends Controller
         Message::create($request->all());
         return back();
     }
-    public function save(Request $request){
-        $kode = $request->kode;
-        return redirect("/messages/$kode");
-    }
-    public function messages(Request $request,Target $target){
+    public function messages(Request $request){
+        $target = Target::where('kode',$request->kode)->first();
         return view('messages',["target"=>$target]);
     }
 }
