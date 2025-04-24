@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->unique();
-            $table->enum('division', ['Medinfo', 'Fund', 'PSDM', 'Food', 'Operational Manager', 'Sekretaris']);
+            $table->enum('division', ['Medinfo', 'Fund', 'PSDM', 'Food', 'Operational Manager', 'Sekretaris', 'Founder']);
             $table->enum('role', ['Inti', 'Staff']);
             $table->char('code', 6)->unique();
             $table->timestamps();
