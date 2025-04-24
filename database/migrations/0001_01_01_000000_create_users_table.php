@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->unique();
-            $table->enum('division', ['Medinfo', 'Fund', 'Friend', 'Food', 'Founder', 'Operational Manager']);
-            $table->enum('role', ['Founder', 'Operational Manager', 'Koordinator', 'Wakil Koordinator', 'Staff']);
+            $table->enum('division', ['Medinfo', 'Fund', 'PSDM', 'Food', 'Operational Manager', 'Sekretaris']);
+            $table->enum('role', ['Inti', 'Staff']);
             $table->char('code', 6)->unique();
             $table->timestamps();
         });
@@ -32,7 +32,8 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->text('text');
+            $table->text('saran');
+            $table->text('kritik');
             $table->timestamps();
         });
     }

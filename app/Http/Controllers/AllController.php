@@ -14,13 +14,11 @@ class AllController extends Controller
         $user = Auth::user();
         if ($request->method() == 'GET') {
             if ($user->role == 'Staff') {
-                $targets = User::where('division', $user->division)->whereNot('role', 'Staff')->get(['id', 'name']);
-            } elseif ($user->role == 'Operational Manager' || $user->role == 'Founder') {
-                $targets = User::whereNot('role', 'Staff')->get(['id', 'name']);
-            } elseif (in_array($user->role, ['Koordinator', 'Wakil Koordinator'])) {
-                $targets = User::where('role', 'Operational Manager')->get(['id', 'name']);
+                $targets = User::where('division', $user->division)->where('role', 'Inti')->get(['id', 'name']);
+            } else {
+                $targets = User::where('role', 'Inti')->get(['id', 'name']);
             }
-            if ($user->division == 'Friend' && $user->role != 'Staff') {
+            if ($user->division == 'PSDM' && $user->role == 'Inti') {
                 $messages = Message::all();
             } else {
                 $messages = [];
@@ -32,6 +30,18 @@ class AllController extends Controller
 
             return back();
         }
+    }
+    public function withMessage($code)
+    {
+        $user = Auth::user();
+        if ($user->division == 'PSDM' && $user->role == 'Inti') {
+            $messages = User::where('code', base64_decode($code))->first()->messages;
+        } else {
+            return back();
+        }
+        $targets = false;
+
+        return view('home', compact('user', 'targets', 'messages'));
     }
 
     public function login(Request $request)
@@ -71,8 +81,9 @@ class AllController extends Controller
 
     public function sendCode()
     {
+        $url = env('APP_URL');
         foreach (User::all() as $item) {
-            $message = "Halo {$item->name} sang penyelamat bumi!\n\nNggak terasa ya, udah sejauh ini kita melangkah bersama di BBJ ini. 💪✨ Sebelum lanjut ke langkah selanjutnya, bantu kami untuk berkembang yuk dengan cara beri evaluasi atau kritik konstruktif ke koor dan wakoor divisi kamu. Pendapat dan feedback kalian penting banget untuk BBJ kedepannya!\n\nTenang aja, identitas kalian bakal aman terjaga karena evaluasi ini bersifat anonim\n\nKlik aja link di bawah ini buat isi form evaluasinya\n\nLINK\nhttps://confess.berbagibitesjogja.site/{$item->code}\n\nEvaluasi akan kami tunggu sampai tanggal 31 yaaa 🙌🏻\n\nTerima kasih yaa udah mau bantu biar kita semua bisa terus berkembang jadi lebih baik lagi! 🤩🙌\n\nSalam semangat,\nDIVISI IT x FRIENDS";
+            $message = "Halo {$item->name} sang penyelamat bumi!\n\nNggak terasa ya, udah sejauh ini kita melangkah bersama di BBJ ini. 💪✨ Sebelum lanjut ke langkah selanjutnya, bantu kami untuk berkembang yuk dengan cara beri evaluasi atau kritik konstruktif ke koor dan wakoor divisi kamu. Pendapat dan feedback kalian penting banget untuk BBJ kedepannya!\n\nTenang aja, identitas kalian bakal aman terjaga karena evaluasi ini bersifat anonim\n\nKlik aja link di bawah ini buat isi form evaluasinya\n\nLINK\n{$url}/{$item->code}\n\nEvaluasi akan kami tunggu sampai tanggal 31 yaaa 🙌🏻\n\nTerima kasih yaa udah mau bantu biar kita semua bisa terus berkembang jadi lebih baik lagi! 🤩🙌\n\nSalam semangat,\nDIVISI IT x FRIENDS";
             $this->kirimWa($item->phone, $message);
         }
     }
@@ -99,7 +110,7 @@ class AllController extends Controller
                 'countryCode' => '62',
             ],
             CURLOPT_HTTPHEADER => [
-                'Authorization: '.env('FONNTE_KEY', null),
+                'Authorization: ' . env('FONNTE_KEY', null),
             ],
         ]);
 

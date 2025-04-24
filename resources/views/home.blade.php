@@ -45,29 +45,35 @@
                 {{ $user->name }}
             </h1>
             <h1 class="font-light text-sm">Sebelumnya kita mau ngucapin terimakasih atas dedikasimu sebagai
-                {{ $user->role }} di
-                divisi
                 {{ $user->division }}. Terima kasih udah meluangkan waktu untuk mengisi form evaluasi ini, pendapat kamu
                 sangat berarti untuk BBJ
             </h1>
-            <div class="bg-white shadow-lg rounded-md p-6">
-                <form action="{{ route('home') }}" method="POST">
-                    @csrf
-                    <select
-                        class="w-full mt-8 p-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
-                        placeholder="Nomor Whatsapp" name="user_id" required>
-                        <option value="">Partnermu</option>
-                        @foreach ($targets as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    <textarea id="text" rows="8" name="text" class="mt-3 block p-2.5 w-full text-sm rounded-lg border"
-                        placeholder="Mau confess apa niih..." required></textarea>
-                    <button
-                        class="w-full px-4 py-2 mt-10 text-sm font-bold text-white bg-tosca rounded-md hover:bg-tosca-700 focus:outline-none"
-                        type="submit">Kirim</button>
-                </form>
-            </div>
+            @if ($targets)
+                <div class="bg-white shadow-lg rounded-md p-6">
+                    <form action="{{ route('home') }}" method="POST">
+                        @csrf
+                        <select
+                            class="w-full mt-8 p-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
+                            placeholder="Nomor Whatsapp" name="user_id" required>
+                            <option value="">Partnermu</option>
+                            @foreach ($targets as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                        <textarea id="text" rows="8" name="saran" class="mt-3 block p-2.5 w-full text-sm rounded-lg border"
+                            placeholder="Kasih saran dong" required></textarea>
+                        <textarea id="text" rows="8" name="kritik" class="mt-3 block p-2.5 w-full text-sm rounded-lg border"
+                            placeholder="Ada kritik ga nih" required></textarea>
+                        <button
+                            class="w-full px-4 py-2 mt-10 text-sm font-bold text-white bg-tosca rounded-md hover:bg-tosca-700 focus:outline-none"
+                            type="submit">Kirim</button>
+                    </form>
+                </div>
+            @else
+                <div class="bg-white shadow-lg rounded-md p-6">
+                    <a href="/" class="bg-navy rounded-md p-2 text-white hover:bg-navy-600">Back home</a>
+                </div>
+            @endif
             <h1 class="text-center text-sm font-bold italic mt-6 text-slate-400">Made possible by IT and Friends</h1>
 
         </div>
@@ -79,9 +85,9 @@
                             src="https://avatar.iran.liara.run/public/boy?username={{ randomName() }}" width="50"
                             alt="">
                         <div class="w-72">
-                            @if ($user->division == 'Friend')
-                                <h1>{{ randomName() }} buat <span
-                                        class="text-tosca font-bold text-md">{{ $item->user->name }}</span>
+                            @if ($user->division == 'PSDM')
+                                <h1>{{ randomName() }} buat <a href="{{ route('mess', base64_encode($item->user->code)) }}"
+                                        class="text-tosca font-bold text-md">{{ $item->user->name }}</a>
                                 </h1>
                             @else
                                 <h1>{{ randomName() }}</h1>
@@ -90,7 +96,10 @@
                                 {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, DD MMMM hh:mm') }}</h1>
                         </div>
                     </div>
-                    <p class="font-light mt-6 text-justify">{{ $item->text }}</p>
+                    <h6 class="text-xl font-bold mt-4">Saran :</h6>
+                    <p class="font-light text-justify">{{ $item->saran }}</p>
+                    <h6 class="text-xl font-bold mt-4">Kritik :</h6>
+                    <p class="font-light text-justify">{{ $item->kritik }}</p>
                 </div>
             @endforeach
         </div>
