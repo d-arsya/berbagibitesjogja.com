@@ -12,7 +12,7 @@ load_dotenv()
 DATABASE_URL = os.getenv("PG_URL")
 
 # Set up the database engine and session
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL,connect_args={"ssl": None})
 
 # Create a sessionmaker to generate DB sessions
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

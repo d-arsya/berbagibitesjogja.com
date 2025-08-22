@@ -5,7 +5,7 @@ from typing import List
 from models import NeedFood, Users
 from database import get_db
 from routes.auth import get_current_user
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 # Pydantic model for request validation
@@ -36,8 +36,7 @@ class NeedFoodResponseModel(BaseModel):
     keterangan: str
     status: str
 
-    class Config:
-        orm_mode = True  # Allows returning SQLAlchemy models as Pydantic models
+    model_config = ConfigDict(from_attributes=True)  # Allows returning SQLAlchemy models as Pydantic models
 
 # Food router
 need_router = APIRouter()

@@ -7,7 +7,7 @@ from uuid import uuid4
 from models import ShareFood, Users
 from database import get_db
 from routes.auth import get_current_user
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 UPLOAD_DIR = "uploads/share_food"
 share_router = APIRouter()
@@ -35,8 +35,7 @@ class ShareFoodResponseModel(BaseModel):
     makanan_diambil: Optional[str] = None
     status: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 # Endpoint untuk berbagi makanan dengan unggahan gambar
 @share_router.post("/share", status_code=201)

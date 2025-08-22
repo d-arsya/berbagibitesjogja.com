@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 
@@ -16,8 +16,7 @@ class AnnouncementUpdate(AnnouncementBase):
 class AnnouncementResponse(AnnouncementBase):
     id: int
 
-    class Config:
-        orm_mode = True  # Allows returning SQLAlchemy models as Pydantic models
+    model_config = ConfigDict(from_attributes=True)
 
 # Initialize the APIRouter for announcements
 announcements_router = APIRouter()

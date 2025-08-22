@@ -18,7 +18,10 @@ app.add_middleware(
     allow_headers=["*"],  
 )
 
-# Include the routers
+@app.get('/')
+async def base():
+    return {"message": "Hello World"}
+app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(need_router, prefix="/food", tags=["Need Food Routes"])
 app.include_router(share_router, prefix="/food", tags=["Share Food Routes"])

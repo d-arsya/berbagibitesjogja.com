@@ -1,0 +1,13 @@
+services:
+  backend:
+    image: disyfa/bbj-mobile-be
+    build: .
+    container_name: bbj-mobile-be
+    ports:
+      - "3000:8000"
+    env_file:
+      - .env
+    volumes:
+      # Local (dev)
+      - ./uploads:/app/uploads
+    restart: always
