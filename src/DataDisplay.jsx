@@ -168,20 +168,20 @@ export default function DataDisplay() {
 
         {/* Header with Global Save */}
         <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <div className="flex justify-between items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">
+              <h1 className="text-sm md:text-3xl font-bold text-gray-800">
                 Berbagi Bites Jogja - Slot Manager
               </h1>
               <p className="text-sm text-gray-600 mt-1">
                 Atur slot jadwal volunteer mingguan
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <button
                 onClick={loadEntries}
                 disabled={loading}
-                className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
+                className="flex items-center gap-1 bg-gray-600 text-white text-xs md:text-lg px-2 md:px-4 py-1 md:py-2 rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
               >
                 <RefreshCw
                   size={20}
@@ -191,7 +191,7 @@ export default function DataDisplay() {
               </button>
               <button
                 onClick={addEntry}
-                className="flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+                className="flex items-center gap-1 bg-indigo-600 text-white text-xs md:text-lg px-2 md:px-4 py-1 md:py-2 rounded-lg hover:bg-indigo-700 transition"
               >
                 <Plus size={20} />
                 Tambah
@@ -199,7 +199,7 @@ export default function DataDisplay() {
               <button
                 onClick={saveAllEntries}
                 disabled={loading}
-                className="flex items-center gap-2 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition disabled:opacity-50 font-bold text-lg shadow-lg"
+                className="flex items-center gap-1 bg-green-600 text-white text-xs md:text-lg px-2 md:px-4 py-1 md:py-2 rounded-lg hover:bg-green-700 transition disabled:opacity-50 font-bold shadow-lg"
               >
                 <Save size={22} />
                 Simpan
@@ -225,12 +225,12 @@ export default function DataDisplay() {
           >
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3">
-                <h2 className="text-xl font-semibold text-gray-700">
+                <h2 className="text-sm md:text-xl font-semibold text-gray-700">
                   Jadwal {entryIndex + 1}
                 </h2>
                 {entry.id ? (
                   <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                    Saved • ID: {entry.id}
+                    {entry.id}
                   </span>
                 ) : (
                   <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded font-medium">
@@ -241,7 +241,7 @@ export default function DataDisplay() {
               <button
                 onClick={() => deleteEntry(entryIndex)}
                 disabled={loading}
-                className="flex items-center gap-1 bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition disabled:opacity-50"
+                className="text-xs md:text-md flex items-center gap-1 bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition disabled:opacity-50"
               >
                 <Trash2 size={18} />
                 Delete
@@ -294,16 +294,16 @@ export default function DataDisplay() {
 
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold text-gray-700 flex items-center gap-2">
+                <h3 className="text-sm md:text-lg font-semibold text-gray-700 flex items-center gap-2">
                   <Briefcase size={20} />
                   Slot Volunteer
                 </h3>
                 <button
                   onClick={() => addJob(entryIndex)}
-                  className="flex items-center gap-1 bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 transition text-sm"
+                  className="flex items-center gap-1 bg-green-500 text-white px-2 md:px-3 py-1 rounded-lg hover:bg-green-600 transition text-sm"
                 >
                   <Plus size={16} />
-                  Tambah Tugas
+                  Tambah
                 </button>
               </div>
 
@@ -326,12 +326,12 @@ export default function DataDisplay() {
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-3">
-                          <h4 className="font-medium text-gray-700">
+                          <h4 className="text-sm md:text-md font-medium text-gray-700">
                             Tugas {jobIndex + 1}
                           </h4>
                           {job.id && (
                             <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">
-                              ID: {job.id}
+                              #{job.id}
                             </span>
                           )}
                         </div>
@@ -461,7 +461,7 @@ export default function DataDisplay() {
                                   key={personIndex}
                                   className="flex items-center justify-between bg-white p-2 rounded border border-gray-200"
                                 >
-                                  <div className="flex items-center gap-3">
+                                  <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-3">
                                     <span className="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded font-medium">
                                       #{personIndex + 1}
                                     </span>
