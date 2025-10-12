@@ -81,10 +81,10 @@ export default function DataDisplay() {
         <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">
+              <h1 className="text-sm md:text-3xl font-bold text-gray-800">
                 Berbagi Bites Jogja - Slot Volunteer
               </h1>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-xs md:text-sm text-gray-600 mt-1">
                 Ayo isi kesediaan sebelum penuh
               </p>
             </div>
@@ -140,7 +140,7 @@ export default function DataDisplay() {
               {/* Entry Header */}
               <div className="border-b border-gray-200 pb-4 mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-2xl font-bold text-gray-800">
+                  <h2 className="text-sm md:text-2xl font-bold text-gray-800">
                     {entry.sponsor} → {entry.receiver}
                   </h2>
                   <span className="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
