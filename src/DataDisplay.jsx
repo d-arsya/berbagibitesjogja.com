@@ -243,12 +243,21 @@ export default function DataDisplay() {
 
                       {/* Apply Button */}
                       {isFull ? (
-                        <button
-                          disabled
-                          className="w-full bg-gray-400 text-white py-2 px-4 rounded-lg font-medium cursor-not-allowed"
-                        >
-                          Position Filled
-                        </button>
+                        <div>
+                          <button
+                            disabled
+                            className="w-full bg-gray-400 text-white py-2 px-4 rounded-lg font-medium cursor-not-allowed"
+                          >
+                            Position Filled
+                          </button>
+                          <button
+                            onClick={() => unapplyForJob(entry.id, job.id)}
+                            className="mt-3 w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center gap-2"
+                          >
+                            Un Apply
+                            <ExternalLink size={16} />
+                          </button>
+                        </div>
                       ) : !canUserApply ? (
                         <div className="w-full bg-red-100 border border-red-300 text-red-800 py-2 px-4 rounded-lg font-medium text-center text-sm">
                           ⚠️ Not available for your division
