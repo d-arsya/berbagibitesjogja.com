@@ -17,7 +17,8 @@ export default function DataDisplay() {
   const [userDivision, setUserDivision] = useState(""); // User's division for filtering
 
   // API Base URL - change this to your Laravel API
-  const BASE_URL = "https://app.berbagibitesjogja.com";
+  // const BASE_URL = "https://app.berbagibitesjogja.com";
+  const BASE_URL = "http://127.0.0.1:8000";
   const API_BASE_URL = `${BASE_URL}/api`;
 
   // Show message helper
@@ -47,6 +48,9 @@ export default function DataDisplay() {
 
   const applyForJob = (entryId, jobId) => {
     window.location.href = `${BASE_URL}/apply/${entryId}/${jobId}`;
+  };
+  const unapplyForJob = (entryId, jobId) => {
+    window.location.href = `${BASE_URL}/un-apply/${entryId}/${jobId}`;
   };
 
   const canApply = (job) => {
@@ -250,13 +254,22 @@ export default function DataDisplay() {
                           ⚠️ Not available for your division
                         </div>
                       ) : (
-                        <button
-                          onClick={() => applyForJob(entry.id, job.id)}
-                          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center gap-2"
-                        >
-                          Apply Now
-                          <ExternalLink size={16} />
-                        </button>
+                        <div>
+                          <button
+                            onClick={() => applyForJob(entry.id, job.id)}
+                            className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center gap-2"
+                          >
+                            Apply Now
+                            <ExternalLink size={16} />
+                          </button>
+                          <button
+                            onClick={() => unapplyForJob(entry.id, job.id)}
+                            className="mt-3 w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-medium transition flex items-center justify-center gap-2"
+                          >
+                            Un Apply
+                            <ExternalLink size={16} />
+                          </button>
+                        </div>
                       )}
 
                       {/* Applied Users (if any) */}
