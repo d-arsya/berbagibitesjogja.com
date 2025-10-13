@@ -144,12 +144,9 @@ export default function DataDisplay() {
               {/* Entry Header */}
               <div className="border-b border-gray-200 pb-4 mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-sm md:text-2xl font-bold text-gray-800">
+                  <h2 className="text-lg md:text-2xl font-bold text-gray-800">
                     {entry.sponsor} → {entry.receiver}
                   </h2>
-                  <span className="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
-                    #{entry.id}
-                  </span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
                   <Calendar size={16} />
