@@ -17,8 +17,8 @@ export default function DataDisplay() {
   const [userDivision, setUserDivision] = useState(""); // User's division for filtering
 
   // API Base URL - change this to your Laravel API
-  // const BASE_URL = "https://app.berbagibitesjogja.com";
-  const BASE_URL = "http://127.0.0.1:8000";
+  const BASE_URL = "https://app.berbagibitesjogja.com";
+  // const BASE_URL = "http://127.0.0.1:8000";
   const API_BASE_URL = `${BASE_URL}/api`;
 
   // Show message helper
