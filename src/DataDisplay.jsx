@@ -16,7 +16,8 @@ export default function DataDisplay() {
   const [expandedJobs, setExpandedJobs] = useState({});
 
   // API Base URL - change this to your Laravel API
-  const API_BASE_URL = "https://app.berbagibitesjogja.com/api";
+  const API_BASE_URL = "http://127.0.0.1:8000/api";
+  // const API_BASE_URL = "https://app.berbagibitesjogja.com/api";
 
   // Show message helper
   const showMessage = (type, text) => {
