@@ -13,10 +13,10 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const JAM_BUKA = 19;
+    const JAM_BUKA = 7;
     const HARI_BUKA = 1;
     const HARI_TUTUP = 7;
-    const JAM_TUTUP = 7;
+    const JAM_TUTUP = 15;
     const now = new Date();
     const currentDay = now.getDay(); // Minggu = 0, Senin = 1, ..., Sabtu = 6
     const currentHour = now.getHours();
