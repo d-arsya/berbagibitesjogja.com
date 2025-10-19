@@ -16,7 +16,7 @@ function App() {
     const JAM_BUKA = 19;
     const HARI_BUKA = 1;
     const HARI_TUTUP = 7;
-    const JAM_TUTUP = 15;
+    const JAM_TUTUP = 7;
     const now = new Date();
     const currentDay = now.getDay(); // Minggu = 0, Senin = 1, ..., Sabtu = 6
     const currentHour = now.getHours();
@@ -25,12 +25,12 @@ function App() {
     // Hitung waktu buka: Senin 19:00
     const openDate = new Date(now);
     openDate.setDate(now.getDate() + ((1 - currentDay + 7) % 7)); // next Monday
-    openDate.setHours(19, 0, 0, 0); // 19:00:00
+    openDate.setHours(JAM_BUKA, 0, 0, 0); // 19:00:00
 
     // Hitung waktu tutup: Minggu 15:00
     const closeDate = new Date(now);
     closeDate.setDate(now.getDate() + ((0 - currentDay + 7) % 7)); // next Sunday
-    closeDate.setHours(15, 0, 0, 0); // 15:00:00
+    closeDate.setHours(JAM_TUTUP, 0, 0, 0); // 15:00:00
 
     // Kasus khusus: jika sekarang setelah Senin 19:00 tapi sebelum Minggu 15:00
     const isAfterOpen =
