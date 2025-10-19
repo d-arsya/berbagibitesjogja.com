@@ -20,7 +20,7 @@ function NotOpenYet() {
           <li>
             ⏳ sampai{" "}
             <span className="font-semibold text-purple-600">
-              Minggu pukul 15.00
+              Minggu pukul 07.00
             </span>
           </li>
         </ul>
