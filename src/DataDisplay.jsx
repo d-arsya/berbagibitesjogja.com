@@ -46,6 +46,41 @@ export default function DataDisplay() {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    const days = [
+      "Minggu",
+      "Senin",
+      "Selasa",
+      "Rabu",
+      "Kamis",
+      "Jumat",
+      "Sabtu",
+    ];
+    const months = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+
+    const dayName = days[date.getDay()];
+    const dayNumber = date.getDate();
+    const monthName = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    return `${dayName}, ${dayNumber} ${monthName} ${year}`;
+  };
+
   const applyForJob = (entryId, jobId) => {
     window.location.href = `${BASE_URL}/apply/${entryId}/${jobId}`;
   };
@@ -150,7 +185,7 @@ export default function DataDisplay() {
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
                   <Calendar size={16} />
-                  <span className="text-sm">{entry.date}</span>
+                  <span className="text-sm">{formatDate(entry.date)}</span>
                 </div>
               </div>
 

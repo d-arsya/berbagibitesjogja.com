@@ -1,14 +1,6 @@
 import DataDisplay from "./DataDisplay";
 import NotOpenYet from "./NotOpenYet";
 import { useEffect, useState } from "react";
-
-// function App() {
-//   return (
-//     <>
-//       <DataDisplay />
-//     </>
-//   );
-// }
 function App() {
   const [isOpen, setIsOpen] = useState(false);
 
