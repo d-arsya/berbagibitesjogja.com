@@ -108,7 +108,7 @@ class CalendarNotification extends Command
                     $message = $item["message"];
                     foreach ($item["target"] as $target) {
                         dispatch(function () use ($target, $message) {
-                            BotController::sendForPublic($target, $message, AppConfiguration::useWhatsapp());
+                            BotController::sendForPublic($target, $message);
                         })->delay(now()->addSeconds($delay));
                         $delay = $delay + 10;
                     }
