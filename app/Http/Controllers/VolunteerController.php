@@ -12,6 +12,7 @@ use App\Models\Volunteer\Division;
 use App\Models\Volunteer\Notify;
 use App\Models\Volunteer\Precence;
 use App\Models\Volunteer\User;
+use App\Traits\SendWhatsapp;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class VolunteerController extends Controller
 {
+    use SendWhatsapp;
     public function home()
     {
         if (! Auth::user()) {
@@ -235,6 +237,21 @@ class VolunteerController extends Controller
                 // Save to DB
                 $apply->data = $data;
                 $apply->save();
+                $message = $volunteer->name
+                    . " berhasil mendaftar"
+                    . "\n\nDonatur: " . $data->get('sponsor')
+                    . "\nPenerima: " . $data->get('receiver')
+                    . "\nTanggal: " . $data->get('date')
+                    . "\nTugas: " . $jobItem['name'];
+                $messageV = "Kamu berhasil mendaftar"
+                    . "\n\nDonatur: " . $data->get('sponsor')
+                    . "\nPenerima: " . $data->get('receiver')
+                    . "\nTanggal: " . $data->get('date')
+                    . "\nTugas: " . $jobItem['name'];
+                dispatch(function () use ($volunteer, $message, $messageV) {
+                    $this->send('120363330280278639@g.us', $message);
+                    $this->send($volunteer->phone, $messageV);
+                });
             }
             return redirect()->away('https://war.berbagibitesjogja.com');
         }
@@ -276,7 +293,21 @@ class VolunteerController extends Controller
                 $apply->data = $data;
                 $apply->save();
             }
-
+            $message = $volunteer->name
+                . " membatalkan ikut"
+                . "\n\nDonatur: " . $data->get('sponsor')
+                . "\nPenerima: " . $data->get('receiver')
+                . "\nTanggal: " . $data->get('date')
+                . "\nTugas: " . $jobItem['name'];
+            $messageV = "Kamu membatalkan"
+                . "\n\nDonatur: " . $data->get('sponsor')
+                . "\nPenerima: " . $data->get('receiver')
+                . "\nTanggal: " . $data->get('date')
+                . "\nTugas: " . $jobItem['name'];
+            dispatch(function () use ($volunteer, $message, $messageV) {
+                $this->send('120363330280278639@g.us', $message);
+                $this->send($volunteer->phone, $messageV);
+            });
             return redirect()->away('https://war.berbagibitesjogja.com');
         }
 
