@@ -71,7 +71,7 @@ class BotController extends Controller
         } elseif ($foodDonator) {
             $this->getReplyFromFoodDonator($foodDonator, $text);
         } else {
-            $this->gemini($sender, $text);
+            // $this->gemini($sender, $text);
         }
         return true;
     }
