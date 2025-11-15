@@ -28,9 +28,9 @@ class BotController extends Controller
                 $this->getActiveDonation($sender);
             } elseif ($message == '@all') {
                 $this->mentionAll($sender);
-            } elseif (str_starts_with($message, '@BOT status')) {
-                $this->getStatus($sender, $message);
-            } else {
+            } elseif ($message == '@BOT status') {
+                $this->send($sender, "ID GROUP : $sender");
+            } elseif (str_starts_with($message, '@BOT')) {
                 $this->send($sender, 'SEDANG DALAM PERBAIKAN');
             }
             // if ($message == '@BOT donasi hari ini') {
