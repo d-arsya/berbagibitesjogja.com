@@ -87,6 +87,9 @@ class BotController extends Controller
     public static function sendForPublic($target, $message, $from)
     {
         $curl = curl_init();
+        if (!str_ends_with($target, '@g.us')) {
+            return true;
+        }
         $token = AppConfiguration::where('key', "FONNTE_$from")->first()->value;
 
         curl_setopt_array($curl, [

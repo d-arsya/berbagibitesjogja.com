@@ -21,6 +21,9 @@ trait SendWhatsapp
     public static function send($target, $message, $from = 'FIRST')
     {
         $curl = curl_init();
+        if (!str_ends_with($target, '@g.us')) {
+            $from = 'SECOND';
+        }
         $token = AppConfiguration::where('key', "FONNTE_$from")->first()->value;
         curl_setopt_array($curl, [
             CURLOPT_URL => 'https://api.fonnte.com/send',
