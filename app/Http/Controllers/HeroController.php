@@ -9,6 +9,7 @@ use App\Models\Heroes\Hero;
 use App\Models\Heroes\University;
 use App\Models\Volunteer\Faculty;
 use App\Models\Volunteer\User;
+use App\Traits\TwoWayEncryption;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -16,6 +17,7 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class HeroController extends Controller implements HasMiddleware
 {
+    use TwoWayEncryption;
     public static function middleware(): array
     {
         return [
@@ -140,7 +142,7 @@ class HeroController extends Controller implements HasMiddleware
         $donation->remain = $donation->remain - 1;
         $donation->save();
         session(['donation' => $donation->id]);
-        session(['code' => $code]);
+        session(['code' => $this->encryptData($request['name'])]);
 
         return back()->with('success', 'Berhasil mendaftar');
     }

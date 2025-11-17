@@ -11,9 +11,21 @@ use Carbon\Carbon;
 
 trait BotHeroTrait
 {
-    use SendWhatsapp;
+    use SendWhatsapp, TwoWayEncryption;
 
-
+    protected function verifyFoodHeroes($sender, $text)
+    {
+        preg_match('/_(.*?)_/', $text, $match);
+        $code = $match[1] ?? null;
+        $name = $this->decryptData($code);
+        $activeDonation = Donation::whereStatus('aktif')->pluck('id');
+        $hero = Hero::whereName($name)->whereIn('donation_id', $activeDonation)->first();
+        if ($hero) {
+            $this->send($sender, $hero->code);
+        } else {
+            $this->send($sender, 'Maaf signature key tidak valid');
+        }
+    }
     protected function getReplyFromHeroes($hero, $text)
     {
         $message = '> Balasan Heroes' . " \n\n" . $hero->name . "\n_Kode : " . $hero->code . "_\n\n" . $text;

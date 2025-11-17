@@ -23,19 +23,19 @@
                         </h1>
                     @endif
                     <h1 class="text-3xl text-navy font-bold text-center italic my-4">
-                        {{ implode(' ', str_split(session('code'))) }}
+                        Selangkah lagi untuk dapat berkontribusi
                     </h1>
-                    <a href="{{ route('hero.cancel') }}">
-                        <h1 class="text-xs text-slate-400 text-center italic my-3">tunjukkan untuk menukarkan makanan</h1>
-                        <div class="m-auto bg-red-600 hover:bg-red-800 w-max rounded-md p-2 text-white">
-                            Batalkan
+                    <a
+                        href="https://wa.me/6285117773642?text={{ rawurlencode("> Verify\nHalo Minje, Aku mau konfirmasi nih buat daftar jadi food heroes\n\n*Signature* _" . session('code') . '_') }}">
+                        <h1 class="text-xs text-slate-400 text-center italic my-3">Silahkan kirim pesan verifikasi ke bot
+                            kami untuk mendapatkan kode penukaran. Silahkan tekan tombol "Verifikasi" dibawah ini</h1>
+                        <div class="m-auto bg-navy hover:bg-navy-600 w-max rounded-md p-2 text-white">
+                            Verifikasi
                         </div>
                     </a>
-                    <a href={{ route('notify.form') }}
-                        class="text-sm bg-navy hover:bg-navy-600 mt-8 w-max rounded-md py-2 px-4 m-auto text-center block text-white font-medium text-center italic">Dapatkan
-                        Notifikasi</a>
-                    <h1 class="text-xs text-slate-400 font-medium text-center italic mt-3">karena keterbatasan pendonor
-                        hanya bisa digunakan dengan email UGM (mail.ugm.ac.id)</h1>
+                    <a href={{ route('hero.cancel') }}
+                        class="text-sm bg-red-600 hover:bg-navy-800 mt-8 w-max rounded-md py-2 px-4 m-auto text-center block text-white font-medium text-center italic">Dapatkan
+                        Batalkan</a>
                 </div>
                 <div class="w-full rounded-lg bg-white shadow-xl mt-8 py-5 px-6">
                     <h1 class="text-md text-navy font-medium text-center italic mb-4">Informasi Pengambilan
