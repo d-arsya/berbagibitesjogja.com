@@ -21,7 +21,18 @@ trait BotHeroTrait
         $activeDonation = Donation::whereStatus('aktif')->pluck('id');
         $hero = Hero::whereName($name)->whereIn('donation_id', $activeDonation)->first();
         if ($hero) {
-            $this->send($sender, $hero->code);
+            $message =
+                "🎉 Halo {$hero->name}!\n\n" .
+                "Terima kasih sudah mendaftar sebagai Food Hero BBJ 🌱✨\n" .
+                "Berikut adalah *kode penukaranmu*: **{$hero->code}** 🔑\n\n" .
+                "📅 Tanggal: " . $hero->donation->take->format('d F Y') . "\n" .
+                "⏰ Waktu: " . str_pad($hero->donation->hour, 2, '0', STR_PAD_LEFT) . ":" . str_pad($hero->donation->minute, 2, '0', STR_PAD_LEFT) . "\n" .
+                "📍 Lokasi: {$hero->donation->location}\n" .
+                "🗺️ Maps: {$hero->donation->maps}\n\n" .
+                "Harap tunjukkan kode ini saat pengambilan ya. Semoga bermanfaat dan tidak terbuang 🌿💚\n\n" .
+                "_Pesan otomatis dari bot BBJ 🤖_";
+
+            $this->send($sender, $message);
         } else {
             $this->send($sender, 'Maaf signature key tidak valid');
         }

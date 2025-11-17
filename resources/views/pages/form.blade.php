@@ -26,7 +26,7 @@
                         Selangkah lagi untuk dapat berkontribusi
                     </h1>
                     <a
-                        href="https://wa.me/6285117773642?text={{ rawurlencode("> Verify\nHalo Minje, Aku mau konfirmasi nih buat daftar jadi food heroes\n\n*Signature* _" . session('code') . '_') }}">
+                        href="https://wa.me/6285117773642?text={{ rawurlencode("> Verify\n\nHalo Minje! 👋\nAku mau konfirmasi pendaftaran sebagai Food Heroes.\n\n*Signature* _" . session('code') . '_') }}">
                         <h1 class="text-xs text-slate-400 text-center italic my-3">Silahkan kirim pesan verifikasi ke bot
                             kami untuk mendapatkan kode penukaran. Silahkan tekan tombol "Verifikasi" dibawah ini</h1>
                         <div class="m-auto bg-navy hover:bg-navy-600 w-max rounded-md p-2 text-white">

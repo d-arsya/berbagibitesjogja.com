@@ -88,7 +88,7 @@ class BotController extends Controller
     {
         $curl = curl_init();
         if (!str_ends_with($target, '@g.us')) {
-            return true;
+            $from = 'SECOND';
         }
         $token = AppConfiguration::where('key', "FONNTE_$from")->first()->value;
 
