@@ -1,37 +1,56 @@
-# Berbagi Bites Jogja
+# 🍽️ Berbagi Bites Jogja
 
-![Logo](https://media.berbagibitesjogja.com/Banner.png)
+![Berbagi Bites Jogja Banner](https://media.berbagibitesjogja.com/Banner.png)
 
-Berbagi Bites Jogja adalah program volunteer yang bertujuan untuk menangani food waste di Yogyakarta. Kami bekerja sama dengan berbagai komunitas dan individu untuk mengurangi makanan yang terbuang dan mendistribusikannya kepada mereka yang membutuhkan.
+**Mengurangi Food Waste, Berbagi Kebaikan**
 
-## Struktur Repository
+---
 
-Repository ini merupakan **mono-repo**, artinya seluruh aplikasi dan layanan yang digunakan dalam ekosistem Berbagi Bites Jogja disimpan dalam satu repository, namun dipisahkan berdasarkan **branch** sesuai proyeknya masing-masing.
+## 📖 Tentang Kami
 
-Berikut adalah daftar branch dan fungsinya:
+**Berbagi Bites Jogja** adalah program volunteer yang didedikasikan untuk menangani permasalahan *food waste* di Yogyakarta. Dikelola oleh para relawan dari civitas akademika Universitas Gadjah Mada (mahasiswa), kami berkomitmen untuk:
 
-* **backend_rust** — Backend berbasis Rust.
-* **frontend** — Frontend utama aplikasi.
-* **frontend_dev** — Versi pengembangan (development) untuk frontend.
-* **pemkot_laravel** — Aplikasi berbasis Laravel untuk kebutuhan Pemkot.
-* **app_laravel** — Aplikasi Laravel utama.
-* **backend_laravel** — Backend Laravel.
-* **confess** — Modul atau aplikasi *confession*.
-* **war_volunteer** — Sistem untuk volunteer program WAR.
-* **war_staff** — Sistem untuk staff program WAR.
-* **mobile_panel** — Panel mobile.
-* **media** — Sistem terkait media.
-* **mobile_backend** — Backend untuk aplikasi mobile.
+- 🌱 **Mengurangi pemborosan makanan** yang layak konsumsi
+- 🤝 **Mendistribusikan makanan** kepada mereka yang membutuhkan
+- 📚 **Mengedukasi masyarakat** tentang pentingnya mengurangi food waste
+- 🎯 **Membangun ekosistem** berbagi yang berkelanjutan
 
-Masing-masing branch memiliki konteks, struktur, dan kebutuhan teknis tersendiri. Silakan checkout ke branch terkait untuk dokumentasi lebih detail.
+---
 
-## Tentang Kami
+## 🏗️ Struktur Repository
 
-Berbagi Bites Jogja adalah inisiatif yang dikelola oleh para relawan yang berasal dari civitas akademika Universitas Gadjah Mada baik dosen maupun mahasiswa dengan tujuan utama mengurangi food waste dan memastikan makanan yang layak konsumsi dapat sampai ke tangan yang membutuhkan. Kami memiliki berbagai kegiatan dan program yang berfokus pada edukasi, pengumpulan, dan distribusi makanan.
+Repository ini menggunakan arsitektur **mono-repo** di mana seluruh aplikasi dan layanan dalam ekosistem Berbagi Bites Jogja disimpan dalam satu repository namun **dipisahkan berdasarkan branch** sesuai dengan fungsinya masing-masing.
 
-## Kontak
+### 📂 Daftar Branch & Fungsi
 
-Untuk informasi lebih lanjut, kunjungi **website** kami atau hubungi kami melalui **Instagram**:
+| Branch | Teknologi | Deskripsi |
+|--------|-----------|-----------|
+| `backend_rust` | Rust | Backend utama berbasis Rust untuk performa tinggi |
+| `frontend` | NextJS | Frontend aplikasi utama (production) |
+| `frontend_dev` | NextJS | Environment pengembangan untuk frontend |
+| `pemkot_laravel` | Laravel | Aplikasi khusus untuk kebutuhan Pemerintah Kota |
+| `app_laravel` | Laravel | Aplikasi Laravel utama |
+| `backend_laravel` | Laravel | Backend berbasis Laravel |
+| `confess` | Laravel | Modul sistem *confession* |
+| `war_volunteer` | ViteJS+React | Sistem manajemen untuk volunteer program WAR |
+| `war_staff` | ViteJS+React | Sistem manajemen untuk staff program WAR |
+| `mobile_panel` | NextJS | Panel administrasi mobile |
+| `media` | - | Sistem manajemen media dan assets |
+| `mobile_backend` | Fast API | Backend untuk aplikasi mobile |
 
-* Instagram: [@berbagibitesjogja](https://www.instagram.com/berbagibitesjogja/)
-* Website: [https://berbagibitesjogja.com](https://berbagibitesjogja.com)
+> 💡 **Catatan:** Setiap branch memiliki dokumentasi teknis tersendiri. Silakan checkout ke branch yang relevan untuk informasi lebih detail.
+
+---
+
+## 📱 Hubungi Kami
+
+Untuk informasi lebih lanjut, kolaborasi, atau pertanyaan:
+
+[![Instagram](https://img.shields.io/badge/Instagram-@berbagibitesjogja-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/berbagibitesjogja/)
+[![Website](https://img.shields.io/badge/Website-berbagibitesjogja.com-4CAF50?style=for-the-badge&logo=google-chrome&logoColor=white)](https://berbagibitesjogja.com)
+
+---
+
+**Dibuat dengan ❤️ oleh Tim IT Berbagi Bites Jogja**
+
+*Bersama mengurangi food waste, berbagi kebahagiaan*
