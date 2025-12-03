@@ -310,7 +310,7 @@ class VolunteerController extends Controller
                 . "\nTanggal: " . $data->get('date')
                 . "\nTugas: " . $jobItem['name'];
             dispatch(function () use ($volunteer, $message, $messageV) {
-                $this->send('120363330280278639@g.us', $message);
+                $this->send('120363350581821641@g.us', $message);
                 $this->send($volunteer->phone, $messageV);
             });
             return redirect()->away('https://war.berbagibitesjogja.com');
