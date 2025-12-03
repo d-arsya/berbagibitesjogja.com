@@ -311,11 +311,13 @@ class VolunteerController extends Controller
                 $apply->data = $data;
                 $apply->save();
             }
-            Cancelation::create(['user_id' => $volunteer->id, 'banned' => now()->addDays(14)]);
-            $message = "Halo kamu tidak bisa mendaftar lagi hingga " . $volunteer->cancelation->banned;
-            dispatch(function () use ($volunteer, $message) {
-                $this->send($volunteer->phone, $message);
-            });
+            if ($volunteer->role == 'member') {
+                Cancelation::create(['user_id' => $volunteer->id, 'banned' => now()->addDays(14)]);
+                $message = "Halo kamu tidak bisa mendaftar lagi hingga " . $volunteer->cancelation->banned;
+                dispatch(function () use ($volunteer, $message) {
+                    $this->send($volunteer->phone, $message);
+                });
+            }
             $message = $volunteer->name
                 . " membatalkan ikut"
                 . "\n\nDonatur: " . $data->get('sponsor')
