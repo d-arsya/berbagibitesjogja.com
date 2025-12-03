@@ -8,6 +8,7 @@ use App\Models\FormJob;
 use App\Models\Heroes\Hero;
 use App\Models\Heroes\University;
 use App\Models\Volunteer\Availability;
+use App\Models\Volunteer\Cancelation;
 use App\Models\Volunteer\Division;
 use App\Models\Volunteer\Notify;
 use App\Models\Volunteer\Precence;
@@ -193,6 +194,13 @@ class VolunteerController extends Controller
             return redirect()->route('volunteer.home')->with('error', 'Anda tidak terdaftar');
         }
         if (session('job')) {
+            if ($volunteer->cancelation) {
+                $message = "Maaf kamu tidak bisa mendaftar hingga " . $volunteer->cancelation->banned;
+                dispatch(function () use ($volunteer, $message) {
+                    $this->send($volunteer->phone, $message);
+                });
+                return redirect()->away('https://war.berbagibitesjogja.com');
+            }
             $entry = session('entry');
             $jobId = session('job');
             session()->forget(['entry', 'job']);
@@ -298,6 +306,11 @@ class VolunteerController extends Controller
                 $apply->data = $data;
                 $apply->save();
             }
+            Cancelation::create(['user_id' => $volunteer->id, 'banned' => now()->addDays(14)]);
+            $message = "Halo kamu tidak bisa mendaftar lagi hingga " . $volunteer->cancelation->banned;
+            dispatch(function () use ($volunteer, $message) {
+                $this->send($volunteer->phone, $message);
+            });
             $message = $volunteer->name
                 . " membatalkan ikut"
                 . "\n\nDonatur: " . $data->get('sponsor')
